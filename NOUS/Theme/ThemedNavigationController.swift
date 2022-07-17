@@ -15,8 +15,8 @@ class ThemedNavigationController: UINavigationController {
         setCurrentTheme()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
     @objc private func setCurrentTheme() {

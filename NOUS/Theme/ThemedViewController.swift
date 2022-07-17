@@ -9,9 +9,9 @@ import UIKit
 
 class ThemedViewController: UIViewController {
     
-    var current = UIStatusBarStyle.default
+    var currentStatusBarStyle = UIStatusBarStyle.default
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return current
+        return currentStatusBarStyle
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -21,16 +21,29 @@ class ThemedViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        checkForUserInterfaceStyle()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-            super.traitCollectionDidChange(previousTraitCollection)
+        super.traitCollectionDidChange(previousTraitCollection)
+        checkForUserInterfaceStyle()
     }
 
-    
     override var childForStatusBarStyle: UIViewController? {
         return self
+    }
+    
+    private func checkForUserInterfaceStyle() {
+        if self.traitCollection.userInterfaceStyle == .dark {
+            ThemeManager.enableDarkMode()
+        }else {
+            ThemeManager.disableDarkMode()
+        }
     }
     
     @objc private func setCurrentTheme() {
@@ -39,7 +52,8 @@ class ThemedViewController: UIViewController {
     
     func handleCurrentTheme(theme: Theme) {
         view.backgroundColor = theme.backgroundColor
-        current = ThemeManager.isDarkMode() ? .lightContent : .default
+        
+        currentStatusBarStyle = ThemeManager.isDarkMode() ? .lightContent : .default
         setNeedsStatusBarAppearanceUpdate()
     }
 	

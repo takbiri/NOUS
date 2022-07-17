@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class ItemTableViewCell: UITableViewCell {
+class ItemTableViewCell: ThemedCell {
 
     @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

@@ -9,10 +9,10 @@ import UIKit
 import RxSwift
 import MessageUI
 
-class MainViewController: UIViewController {
+class MainViewController: ThemedViewController {
 
     //MARK: - IBOutlets
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: ThemedTableView!
     
     //MARK: - Properties
     let bag = DisposeBag()

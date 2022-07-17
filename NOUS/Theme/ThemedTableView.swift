@@ -15,9 +15,9 @@ class ThemedTableView: UITableView {
         setCurrentTheme()
     }
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
-    
+
     @objc private func setCurrentTheme() {
         handleCurrentTheme(theme: ThemeManager.currentTheme)
     }
