@@ -21,4 +21,9 @@ class ItemTableViewCell: ThemedCell {
         self.nameLabel.text = item.title
         self.descriptionLabel.text = item.description
     }
+    
+    override func handleCurrentTheme(theme: Theme) {
+        self.nameLabel.textColor = theme.labelColor
+        self.descriptionLabel.textColor = theme.labelColor
+    }
 }

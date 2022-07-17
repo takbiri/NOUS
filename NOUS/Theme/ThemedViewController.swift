@@ -14,19 +14,15 @@ class ThemedViewController: UIViewController {
         return currentStatusBarStyle
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        ThemeManager.addDarkModeObserver(to: self, selector: #selector(setCurrentTheme))
-        setCurrentTheme()
-    }
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        ThemeManager.addDarkModeObserver(to: self, selector: #selector(setCurrentTheme))
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         checkForUserInterfaceStyle()
+        setCurrentTheme()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

@@ -9,19 +9,20 @@ import UIKit
 
 class ThemedCell: UITableViewCell {
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        ThemeManager.addDarkModeObserver(to: self, selector: #selector(setCurrentTheme))
-        setCurrentTheme()
-    }
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        ThemeManager.addDarkModeObserver(to: self, selector: #selector(setCurrentTheme))
+    }
+    
+    override func willMove(toSuperview newSuperview: UIView?) {
+        setCurrentTheme()
     }
 
     @objc private func setCurrentTheme() {
         handleCurrentTheme(theme: ThemeManager.currentTheme)
     }
     
-    func handleCurrentTheme(theme: Theme) {}
+    func handleCurrentTheme(theme: Theme) {
+        contentView.backgroundColor = theme.backgroundColor
+    }
 }

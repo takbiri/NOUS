@@ -8,17 +8,17 @@
 import UIKit
 
 class ThemedNavigationController: UINavigationController {
-
-    override init(rootViewController: UIViewController) {
-        super.init(rootViewController: rootViewController)
-        ThemeManager.addDarkModeObserver(to: self, selector: #selector(setCurrentTheme))
-        setCurrentTheme()
-    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        ThemeManager.addDarkModeObserver(to: self, selector: #selector(setCurrentTheme))
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setCurrentTheme()
+    }
+
     @objc private func setCurrentTheme() {
         handleCurrentTheme(theme: ThemeManager.currentTheme)
     }

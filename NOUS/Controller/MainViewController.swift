@@ -28,6 +28,10 @@ class MainViewController: ThemedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupSearchBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         self.viewModel.fetchItems()
         self.viewModel.items.subscribe { items in
             DispatchQueue.main.async {

@@ -9,15 +9,15 @@ import UIKit
 
 class ThemedTableView: UITableView {
     
-    override init(frame: CGRect, style: UITableView.Style) {
-        super.init(frame: frame, style: style)
-        ThemeManager.addDarkModeObserver(to: self, selector: #selector(setCurrentTheme))
-        setCurrentTheme()
-    }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        ThemeManager.addDarkModeObserver(to: self, selector: #selector(setCurrentTheme))
     }
 
+    override func willMove(toSuperview newSuperview: UIView?) {
+        setCurrentTheme()
+    }
+    
     @objc private func setCurrentTheme() {
         handleCurrentTheme(theme: ThemeManager.currentTheme)
     }

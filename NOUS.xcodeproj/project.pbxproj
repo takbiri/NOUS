@@ -13,8 +13,8 @@
 		0A827BE82883F90F002BC2B8 /* ThemedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A827BE72883F90F002BC2B8 /* ThemedTableView.swift */; };
 		0A827BEA2883F994002BC2B8 /* ThemedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A827BE92883F994002BC2B8 /* ThemedNavigationController.swift */; };
 		0A827BEC2883FA5D002BC2B8 /* ThemedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A827BEB2883FA5D002BC2B8 /* ThemedViewController.swift */; };
+		0A827BED28841088002BC2B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AAE35582882A248001B55FB /* Main.storyboard */; };
 		0AAE35532882A248001B55FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE35522882A248001B55FB /* AppDelegate.swift */; };
-		0AAE355A2882A248001B55FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AAE35582882A248001B55FB /* Main.storyboard */; };
 		0AAE355C2882A24A001B55FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AAE355B2882A24A001B55FB /* Assets.xcassets */; };
 		0AAE355F2882A24A001B55FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AAE355D2882A24A001B55FB /* LaunchScreen.storyboard */; };
 		0AEC1B7C2882A6D500B33DFE /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEC1B7B2882A6D500B33DFE /* NetworkingService.swift */; };
@@ -242,9 +242,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A827BED28841088002BC2B8 /* Main.storyboard in Resources */,
 				0AAE355F2882A24A001B55FB /* LaunchScreen.storyboard in Resources */,
 				0AAE355C2882A24A001B55FB /* Assets.xcassets in Resources */,
-				0AAE355A2882A248001B55FB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
