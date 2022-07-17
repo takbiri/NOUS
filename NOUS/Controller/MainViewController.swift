@@ -99,6 +99,7 @@ extension MainViewController: MFMailComposeViewControllerDelegate {
     }
 }
 
+//MARK: - UISearchBarDelegate
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.isFiltered = true
