@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 struct ThemeManager {
-    static let isDarkModeKey = "isDarkMode"
+    static let styleStatusKey = "styleStatusKey"
     static var styleHasBeenChanged = PublishSubject<Void>()
     
     static var currentTheme: Theme {
@@ -17,16 +17,16 @@ struct ThemeManager {
     }
     
     static func isDarkMode() -> Bool {
-        return UserDefaults.standard.bool(forKey: isDarkModeKey)
+        return UserDefaults.standard.bool(forKey: styleStatusKey)
     }
     
     static func enableDarkMode() {
-        UserDefaults.standard.set(true, forKey: isDarkModeKey)
+        UserDefaults.standard.set(true, forKey: styleStatusKey)
         styleHasBeenChanged.onNext(())
     }
     
     static func disableDarkMode() {
-        UserDefaults.standard.set(false, forKey: isDarkModeKey)
+        UserDefaults.standard.set(false, forKey: styleStatusKey)
         styleHasBeenChanged.onNext(())
     }
 }
