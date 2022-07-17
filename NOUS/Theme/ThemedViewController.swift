@@ -6,23 +6,25 @@
 //
 
 import UIKit
+import RxSwift
 
 class ThemedViewController: UIViewController {
     
     var currentStatusBarStyle = UIStatusBarStyle.default
+    let bag = DisposeBag()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return currentStatusBarStyle
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        ThemeManager.addDarkModeObserver(to: self, selector: #selector(setCurrentTheme))
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         checkForUserInterfaceStyle()
-        setCurrentTheme()
+        ThemeManager.styleHasBeenChanged.subscribe { _ in
+            self.handleCurrentTheme(theme: ThemeManager.currentTheme)
+        }.disposed(by: self.bag)
+        
+        self.handleCurrentTheme(theme: ThemeManager.currentTheme)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -41,11 +43,7 @@ class ThemedViewController: UIViewController {
             ThemeManager.disableDarkMode()
         }
     }
-    
-    @objc private func setCurrentTheme() {
-        handleCurrentTheme(theme: ThemeManager.currentTheme)
-    }
-    
+        
     func handleCurrentTheme(theme: Theme) {
         view.backgroundColor = theme.backgroundColor
         

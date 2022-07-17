@@ -15,7 +15,6 @@ class MainViewController: ThemedViewController {
     @IBOutlet weak var tableView: ThemedTableView!
     
     //MARK: - Properties
-    let bag = DisposeBag()
     let viewModel = MainViewModel()
     var items = [Item]()
     var filteredItems = [Item]()

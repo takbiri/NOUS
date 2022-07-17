@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import RxSwift
 
 struct ThemeManager {
     static let isDarkModeKey = "isDarkMode"
+    static var styleHasBeenChanged = PublishSubject<Void>()
     
     static var currentTheme: Theme {
         return isDarkMode() ? .dark : .light
@@ -20,19 +22,11 @@ struct ThemeManager {
     
     static func enableDarkMode() {
         UserDefaults.standard.set(true, forKey: isDarkModeKey)
-        NotificationCenter.default.post(name: .systemInterfaceHasChanged, object: nil)
+        styleHasBeenChanged.onNext(())
     }
     
     static func disableDarkMode() {
         UserDefaults.standard.set(false, forKey: isDarkModeKey)
-        NotificationCenter.default.post(name: .systemInterfaceHasChanged, object: nil)
+        styleHasBeenChanged.onNext(())
     }
-
-    static func addDarkModeObserver(to observer: Any, selector: Selector) {
-        NotificationCenter.default.addObserver(observer, selector: selector, name: .systemInterfaceHasChanged, object: nil)
-    }
-}
-
-extension Notification.Name {
-    static let systemInterfaceHasChanged = Notification.Name(rawValue: "systemInterfaceHasChanged")
 }

@@ -6,22 +6,20 @@
 //
 
 import UIKit
+import RxSwift
 
 class ThemedCell: UITableViewCell {
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        ThemeManager.addDarkModeObserver(to: self, selector: #selector(setCurrentTheme))
-    }
+    let bag = DisposeBag()
     
     override func willMove(toSuperview newSuperview: UIView?) {
-        setCurrentTheme()
+        ThemeManager.styleHasBeenChanged.subscribe { _ in
+            self.handleCurrentTheme(theme: ThemeManager.currentTheme)
+        }.disposed(by: self.bag)
+        
+        self.handleCurrentTheme(theme: ThemeManager.currentTheme)
     }
 
-    @objc private func setCurrentTheme() {
-        handleCurrentTheme(theme: ThemeManager.currentTheme)
-    }
-    
     func handleCurrentTheme(theme: Theme) {
         contentView.backgroundColor = theme.backgroundColor
     }
